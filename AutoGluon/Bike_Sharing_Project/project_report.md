@@ -66,10 +66,12 @@ So, as we venture into the next phase of the competition, let's embrace the jour
 
 ### Model Training Score Evolution
 The line plot above illustrates the evolution of the training scores for the top-performing model across multiple training runs during the project. Each data point represents the score achieved by the model during a specific training iteration, providing insight into the model's learning trajectory over time.
+
 ![model_train_score.png](imgs/model_train_score.png)
 
 ### Kaggle Test Score Evolution
 The Kaggle test score evolution plot illustrates the performance of our model across multiple prediction submissions during the course of the competition. Each point on the graph represents the score achieved on the Kaggle test dataset for a specific submission, providing a visual depiction of the model's progression over time. As we fine-tuned hyperparameters and refined our approach, the plot reflects the fluctuations in our model's performance, showcasing the iterative nature of the competition and our continuous efforts to improve predictive accuracy.
+
 ![model_test_score.png](imgs/model_test_score.png)
 
 ### Evaluation based on days of the weeek
@@ -77,6 +79,12 @@ The Kaggle test score evolution plot illustrates the performance of our model ac
 Analyzing model performance based on days of the week in bike sharing demand prediction provides insights into demand patterns and trends. It helps uncover day-specific variations and anomalies, such as differences between weekdays and weekends, which can influence bike usage. Understanding these patterns informs strategic decision-making, such as optimizing bike allocation and scheduling maintenance activities. Overall, evaluating model performance by days of the week offers a nuanced perspective on capturing temporal dynamics and meeting user demand effectively.
 
 ![weekdays.png](imgs/plot.png)
+
+### Correlation matrix
+
+By preparing a correlation matrix, we can have a more straight forward view of what variables are strongly correlated and what is weakly correlated.
+
+![correlation.png](imgs/correlation_matrix.png)
 
 ## Summary
 Reflecting on our journey in the Kaggle competition, I'm genuinely impressed by the performance of AutoGluon with our dataset. Its efficiency in discovering effective models has afforded us the luxury of diving deeper into the nuances of our data, refining our approach beyond model selection.

@@ -64,11 +64,11 @@ In summary, by investing additional time in thorough data exploration and featur
 
 ### Create a line plot showing the top model score for the three (or more) training runs during the project.
 
-![model_train_score.png](img/model_train_score.png)
+![model_train_score.png](model_train_score.png)
 
 ### Create a line plot showing the top kaggle score for the three (or more) prediction submissions during the project.
 
-![model_test_score.png](img/model_test_score.png)
+![model_test_score.png](model_test_score.png)
 
 ## Summary
 Reflecting on our journey in the Kaggle competition, I'm genuinely impressed by the performance of AutoGluon with our dataset. Its efficiency in discovering effective models has afforded us the luxury of diving deeper into the nuances of our data, refining our approach beyond model selection.

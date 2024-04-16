@@ -1,5 +1,5 @@
 # Project Report: Predict Bike Sharing Demand with AutoGluon
-#### Mariana Alanis Tamez
+#### Author: Mariana Alanis Tamez
 
 ## Initial Training
 ### What did you realize when you tried to submit your predictions? What changes were needed to the output of the predictor to submit your results?
@@ -64,11 +64,11 @@ In summary, by investing additional time in thorough data exploration and featur
 
 ### Create a line plot showing the top model score for the three (or more) training runs during the project.
 
-![model_train_score.png](model_train_score.png)
+![model_train_score.png](imgs/model_train_score.png)
 
 ### Create a line plot showing the top kaggle score for the three (or more) prediction submissions during the project.
 
-![model_test_score.png](model_test_score.png)
+![model_test_score.png](imgs/model_test_score.png)
 
 ## Summary
 Reflecting on our journey in the Kaggle competition, I'm genuinely impressed by the performance of AutoGluon with our dataset. Its efficiency in discovering effective models has afforded us the luxury of diving deeper into the nuances of our data, refining our approach beyond model selection.

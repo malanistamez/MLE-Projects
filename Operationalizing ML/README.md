@@ -1,0 +1,113 @@
+# Operationalizing-an-AWS-ML-Project
+## Dog Image Classification
+
+In this project, you will complete the following steps:
+
+1. Train and deploy a model on Sagemaker, using the most appropriate instances. Set up multi-instance training in your Sagemaker notebook.
+2. Adjust your Sagemaker notebooks to perform training and deployment on EC2.
+3. Set up a Lambda function for your deployed model. Set up auto-scaling for your deployed endpoint as well as concurrency for your Lambda function.
+4. Ensure that the security on your ML pipeline is set up properly.
+
+### Step 1: Training and deployment on Sagemaker
+
+Followed: Initial Setup
+First, find and download your starter files, which are located in the Resources section for this project lesson. The starter file called train_and_deploy-solution.ipynb is a Jupyter notebook that trains and deploys a computer vision model. The starter file called hpo.py is the "entry point" for the train_and_deploy-solution.ipynb notebook. You can upload both of these files to a Sagemaker instance and run them there, using Jupyter or JupyterLab.
+
+Before you run these files, you'll have to create and open a Sagemaker instance. Decide which type of Sagemaker instance you should create for your training and deployment. Consider the cost, computing power, and speed of launching for each instance type. Write a short justification of why you chose the instance type you did. After you launch your Sagemaker instance, take a screenshot of your Sagemaker dashboard's Notebooks > Instances section to show what you've done.
+
+### Step 2: EC2 Training
+
+- **Created SageMaker notebook instance** 
+
+I opted for the ml.t3.medium instance type on AWS EC2 because it offers a balance of computational power and cost-effectiveness, making it well-suited for running my notebook. The ml.t3.medium instance provides sufficient capacity to handle the computational demands of my machine learning tasks without being overly resource-intensive or expensive. This instance type is equipped with a baseline level of CPU performance and memory, which aligns well with the requirements of my notebook. Additionally, the flexibility of the T3 instance family allows for burstable performance, meaning it can accommodate sudden spikes in workload if needed, while still maintaining affordability. Overall, the ml.t3.medium instance strikes a good balance between performance, cost, and scalability for my notebook computing needs on AWS EC2.
+
+
+I opted to train my model on an EC2 instance using the Deep Learning AMI GPU PyTorch 2.0.0. This AMI comes pre-installed with all the necessary libraries, including the latest version of PyTorch, which streamlined the setup process for me. To balance performance and cost-effectiveness, I chose the m5.xlarge instance type.
+
+For the code adjustments, I ensured that the model training process remained consistent with the starter code. This means training the same model with the same dataset and model parameters. Additionally, I modified the code to save the trained model to a specific location on my EC2 instance, namely the TrainedModels directory. Unlike Sagemaker, deploying directly from EC2 isn't feasible, so I focused on saving the model locally.
+
+![image](screenshots/run_solution_py.tiff)
+
+The image above displays the EC2 instance along with the terminal running the **solution.py** script for training the model.
+
+Once the code execution was completed, I accessed the TrainedModels directory on my EC2 instance and captured a screenshot to provide evidence that the model was successfully saved as required. This ensured that I fulfilled the task requirements while utilizing the capabilities of an EC2 instance effectively.
+
+While the code adjustments made in solution.py bear resemblance to the code found in train_and_deploy-solution.ipynb, there exist disparities in the modules utilized. Some modules are exclusive to SageMaker, prompting the adaptation of much of the EC2 training code from functions outlined in the hpo.py starter script. Unlike ec2train.py, which conducts model training with fixed arguments, hpo.py employs argument parsing via the command line. This feature empowers hpo.py to train numerous models with varied hyperparameters, enhancing its versatility compared to ec2train.py.
+
+Once the model is trained and deployed, setting up a Lambda function becomes an important next step. Lambda functions play a vital role in enabling access to your model and its inferences by APIs and other programs, making it a crucial step in the production deployment process.
+
+### Step 3: Lambda function setup
+
+- **Adding SageMaker permission to Lambda Functions**
+
+Lambda function is going to invoke deployed endpoint. However, the lambda function will only be able to invoke endpoint if it has the proper security policies attached to it.
+
+Two security policy has been attached to the role : 
+1. Basic Lambda Function Execution 
+2. Amazon SageMaker Full Access
+
+![image](screenshots/lambdaconfig.png)
+
+### Step 4: Security and testing
+
+**Vulnerability Assessment**
+
+When addressing authentication errors, resorting to granting 'Full Access' may provide a quick fix, but it's essential to recognize the inherent security implications. Adopting this approach potentially exposes your system to security risks posed by malicious actors. Therefore, it's prudent to adhere to the principle of least privilege, allocating only the minimum permissions necessary for the task at hand.
+
+Moreover, outdated and inactive roles present a significant risk to the security posture of Lambda functions. Consequently, it's imperative to promptly eliminate these roles to proactively mitigate any potential security threats.
+
+Additionally, roles containing policies that are no longer utilized can inadvertently open pathways to unauthorized access, posing a significant security risk. Thus, it's strongly advised to systematically remove such redundant policies to fortify the defense against unauthorized access attempts.
+
+**Testing Lambda Function**
+
+When testing Lambda functions, it's crucial to assess not only their functional correctness but also their security posture. Rigorous testing should encompass scenarios aimed at identifying potential vulnerabilities or weaknesses in the function's implementation. By conducting comprehensive testing, including input validation, error handling, and security checks, you can ensure that your Lambda functions are robust and resilient against potential security threats.
+
+![image](screenshots/lambdaconfig2.png)
+![image](screenshots/lambdaconfig3.tiff)
+
+- **Response**
+```
+{
+  "statusCode": 200,
+  "headers": {
+    "Content-Type": "text/plain",
+    "Access-Control-Allow-Origin": "*"
+  },
+  "type-result": "<class 'str'>",
+  "COntent-Type-In": "LambdaContext([aws_request_id=40c3835b-afb6-4113-9965-5d48b0b8f80c,log_group_name=/aws/lambda/aws-mle-project-4,log_stream_name=2024/04/16/[$LATEST]1dc698cf02534d1e8b944e2d6aec88bc,function_name=aws-mle-project-4,memory_limit_in_mb=128,function_version=$LATEST,invoked_function_arn=arn:aws:lambda:us-east-1:270470084622:function:aws-mle-project-4,client_context=None,identity=CognitoIdentity([cognito_identity_id=None,cognito_identity_pool_id=None])])",
+  "body": "[[0.23341242969036102, 0.1201404556632042, 0.17386484146118164, 0.34716036915779114, 0.38284388184547424, 0.2696705162525177, -0.024780860170722008, 0.2748465836048126, -0.32994431257247925, -0.0027336664497852325, 0.2903044819831848, 0.239714115858078, -0.10593105852603912, 0.16950221359729767, 0.41412219405174255, 0.3923192322254181, 0.07747884839773178, -0.004034143872559071, -0.04632091149687767, 0.21375562250614166, 0.3204706609249115, -0.0412529855966568, 0.18571217358112335, 0.1314726173877716, -0.31430190801620483, -0.10718689858913422, 0.0923868790268898, -0.33783143758773804, 0.31861498951911926, 0.028727250173687935, 0.1930113285779953, 0.2503906488418579, -0.07088680565357208, 0.25849753618240356, 0.0221647247672081, 0.16759315133094788, -0.09630408138036728, 0.03821945935487747, 0.17642128467559814, -0.05622150003910065, 0.1854114532470703, -0.014759852550923824, 0.02266746386885643, 0.13891850411891937, -0.03742707893252373, 0.29135188460350037, 0.048349879682064056, 0.018420685082674026, -0.04512607678771019, -0.05058637261390686, 0.19119802117347717, 0.010953916236758232, 0.005685312673449516, 0.03861718624830246, -0.09555500000715256, 0.3293544054031372, 0.40434014797210693, -0.0104390112683177, -0.11048098653554916, 0.2650812268257141, 0.20736373960971832, 0.02980891242623329, -0.024101702496409416, -0.31992730498313904, -0.1753712147474289, -0.2275867462158203, -0.3220716714859009, 0.36454033851623535, 0.029886865988373756, -0.22013209760189056, 0.2735019326210022, -0.03558897599577904, -0.25311869382858276, -0.1781873106956482, -0.13376444578170776, 0.27971670031547546, -0.1317683905363083, -0.22922062873840332, 0.10458315163850784, -0.1579374372959137, 0.13009978830814362, 0.15039677917957306, 0.004514888860285282, -0.02491014450788498, -0.22547155618667603, 0.0344545803964138, 0.14001815021038055, 0.014607766643166542, 0.1506873071193695, 0.19606593251228333, 0.05348163843154907, -0.07449875771999359, -0.25219815969467163, -0.09033939242362976, -0.09468860924243927, -0.20304040610790253, 0.004407989326864481, -0.10100279748439789, -0.24853366613388062, -0.3196812868118286, -0.0049875471740961075, -0.4637678861618042, 0.14250138401985168, -0.2602761685848236, -0.36389797925949097, -0.08760914206504822, -0.22638839483261108, -0.7085053324699402, -0.07523494958877563, -0.4931703507900238, -0.19327642023563385, -0.016528747975826263, -0.2478392869234085, -0.46199724078178406, 0.2235019952058792, -0.5685762166976929, -0.029336730018258095, 0.0773257464170456, -0.4245701730251312, -0.2962212562561035, -0.5610048174858093, -0.3744206726551056, -0.16977612674236298, -0.06874315440654755, -0.36301755905151367, -0.47189927101135254, -0.16460078954696655, -0.5586852431297302, -0.1107543557882309, -0.08528206497430801, -0.4137706160545349, -0.6410139799118042, -0.42030930519104004]]"
+}
+```
+### Step 5: Lambda Concurrency setup and Endpoint Auto-scaling
+
+**Concurrency**
+
+Enabling concurrency for your Lambda function is a strategic move to enhance its responsiveness to high traffic scenarios. By allowing the function to handle multiple invocations simultaneously, concurrency optimization ensures efficient utilization of resources. In my setup, I reserved five instances and provisioned two of them, optimizing the balance between cost and performance.
+
+There are two primary types of concurrency to consider:
+
+> Provisioned Concurrency: This configuration allocates computing resources preemptively, ensuring immediate availability for handling incoming requests. While it offers low-latency processing, there's a maximum instance limit, potentially causing latency if the incoming requests exceed this limit.
+
+> Reserved Concurrency: With reserved concurrency, a fixed number of instances are designated solely for the Lambda function's use. These instances remain active at all times, eliminating startup delays and guaranteeing consistent performance. However, this setup incurs higher costs compared to provisioned concurrency.
+
+In my configuration:
+
+```
+Reserved Instances: 5 out of 1000.
+Provisioned Instances: 2 out of 5.
+```
+
+**Auto-scaling**
+
+For SageMaker endpoints, implementing auto-scaling is imperative to accommodate varying levels of traffic seamlessly. Hence, I configured auto-scaling to dynamically adjust resource allocation based on demand. Here's how I set it up:
+
+```
+Minimum Instances: 1
+Maximum Instances: 3
+Target Value: 20 (threshold for triggering scaling)
+Scale-In Time: 30 seconds
+Scale-Out Time: 30 seconds
+```
+
+This setup ensures that the SageMaker endpoint efficiently scales up or down to meet demand spikes or reductions, optimizing resource utilization while maintaining responsive performance.
+

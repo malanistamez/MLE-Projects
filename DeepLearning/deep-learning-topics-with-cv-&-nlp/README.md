@@ -5,6 +5,31 @@ In this project, I utilized AWS SageMaker to develop an image classification mod
 ## Project Set Up and Installation
 
 Accessing AWS through the course gateway, I initiated the project in SageMaker Studio, ensuring the availability of necessary starter files and datasets for training. Utilizing SageMaker Studio's integrated development environment streamlined the setup process, allowing for seamless project configuration.
+Necessary code and detailed explanation is here:
+1. train_and_deploy.ipynb
+2. train.py
+3. hpo.py (for hyperparameter optimization)
+4. PDF/HTML of the Profiling Report
+5. README.md
+6. Extra file (deploy.py) for deploy the## Project Set Up and Installation
+
+To set up the project, I accessed AWS through the course gateway and launched SageMaker Studio, a fully integrated development environment. Within SageMaker Studio, I organized the necessary files and datasets for training, ensuring a smooth setup process.
+
+### Files and Components
+
+1. **train_and_deploy.ipynb**: This Jupyter notebook serves as the main project file, containing code for training the image classification model and deploying it to AWS.
+
+2. **train.py**: This Python script contains the training logic for the image classification model. It utilizes the dataset and hyperparameters to train the model efficiently.
+
+3. **hpo.py**: This Python script is dedicated to hyperparameter optimization (HPO), a crucial step in fine-tuning the model's performance. It explores various combinations of hyperparameters to find the optimal configuration.
+
+4. **Profiling Report (PDF/HTML)**: The profiling report provides detailed insights into the model's training process, resource utilization, and performance metrics. It helps identify areas for optimization and improvement.
+
+5. **README.md**: The README file contains instructions, guidelines, and information about the project setup, usage, and dependencies. It serves as a reference guide for anyone accessing the project.
+
+6. **deploy.py**: This additional Python script facilitates the deployment of the trained model to AWS. It handles the setup and configuration of the model endpoint, making it accessible for inference.
+
+By organizing these files and components, I ensured a structured and efficient setup process for the project, enabling seamless development, training, and deployment of the image classification model on AWS SageMaker.
 
 ## Dataset
 

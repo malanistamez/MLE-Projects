@@ -57,9 +57,9 @@ Load and visualize the Model Monitor data in the notebook to gain insights into 
 ## Screenshots
 
 - **Step function Successful**:
-  ![Lambda Successful](step_function_success)
+  ![Lambda Successful](step_function_success.tiff)
 
 - **Step function Threshold Not Met**:
-  ![Threshold Not Met](step_func_threshold_not_success)
+  ![Threshold Not Met](step_func_threshold_not_success.tiff)
 
 By following these steps and utilizing the provided files, we ensure the successful construction and deployment of a robust machine learning workflow for Scones Unlimited on Amazon SageMaker, facilitating optimized production processes and enhanced customer satisfaction.

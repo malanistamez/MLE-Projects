@@ -86,7 +86,7 @@ After conducting profiling and debugging, several recommendations were assessed:
 8. Adjust the number of data loader processes as needed.
 
 
-![Debug](screenshots/debugger.tiff]
+![Debug](screenshots/debugger.tiff)
 
 
 The training job for the PyTorch model has been successfully completed after approximately 2566 seconds. The training process involved various stages, including preparation of instances, downloading input data, and executing the training script. Despite encountering challenges such as no GPUs detected, the training job proceeded as expected.
@@ -105,7 +105,7 @@ The table below summarizes the statistics of step durations measured on node alg
 |-------------------------|------|------|-------|-------|-------|-------|
 | Step Durations [s]      | 5.30 | 33.27| 31.54 | 30.97 | 3.40  | 0.99  |
 
-![anomalies](screenshots/anomalies_train_phase.tiff]
+![anomalies](screenshots/anomalies_train_phase.tiff)
 
 Additionally, the histogram below visualizes the distribution of step durations across different nodes. You can toggle the visibility of histograms by selecting or deselecting the labels in the legend.
 
@@ -119,7 +119,7 @@ Your training instance is equipped with 8 CPU cores, yet the average number of d
 
 The histogram below illustrates the distribution of dataloading times recorded throughout your training job. The median dataloading time was 0.764 seconds, with the 95th percentile at 1.0864 seconds and the 25th percentile at 0.6308 seconds.
 
-![Data loading](screenshots/dataloading.tiff]
+![Data loading](screenshots/dataloading.tiff)
 
 ### Suggestions
 
@@ -134,7 +134,7 @@ Based on the profiling and debugging results, several optimization suggestions w
 
 Deploying the trained model is a critical step towards integrating machine learning solutions into real-world applications. Leveraging SageMaker's deployment capabilities, I deployed the image classification model using the "ml.m5.large" instance type and the "deploy.py" script. The deployed model endpoint provides a scalable and reliable solution for performing inference on new data, enabling seamless integration into production environments.
 
-![endpoint](screenshots/endpoints.tiff]
+![endpoint](screenshots/endpoints.tiff)
 
 ## Conclusion
 

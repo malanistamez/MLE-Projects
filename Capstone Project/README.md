@@ -1,5 +1,5 @@
 
-# Kaggle House Prices through AWS SageMaker
+# Capstone Project: Kaggle House Prices through AWS SageMaker
 
 This repository contains a Jupyter notebook that demonstrates how to use AWS SageMaker to tackle the "House Prices" Kaggle competition. The notebook walks through the process of setting up a SageMaker environment, loading the dataset from Kaggle, training a machine learning model, and making predictions on housing prices.
 

@@ -1,6 +1,3 @@
-Here's a draft for the README based on the provided notebook:
-
----
 
 # Kaggle House Prices through AWS SageMaker
 
